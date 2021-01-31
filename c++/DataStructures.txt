@@ -1,0 +1,752 @@
+
+DYNAMIC MEMORY ALLOCATION
+- Dynamic allocation takes place during runtime.
+- The operator new allocates memory of the designated type and returns a pointer to it.
+  new dataType; //allocate single variable
+  new dataType[intEXP]; //allocate array of variables
+
+int *p;
+char *q;
+int x;
+
+p = new int; // creates a variable during execution somewhere in memory, and stores the 	address of the allocated memory in p. The allocated memory is accessed via pointer 	deferencing *p.
+q = new char[16]; //creates an array of 16 components of type char and stores the base 			    address of the array in q.
+- Because a dynamic variable is unnamed, it cannot be accessed directly. It is accessed  	indirectly by the pointer returned by new.
+p = new int; //stores address of allocated memory in p
+*p = 28; //stores 28 in the allocated memory
+
+name = new char[5]; //allocates memory for an array of 5 of type char and stores the base 	             address of the array in name
+strcpy(name, “john”); //stores john in name
+
+str = new string; //allocates memory of type string and stores address of allocated memory 	             in str.
+*str = “Sunny Day”; //stores the string in memory pointed to by str
+
+Delete -
+delete pointerVar; // To deallocate a single dynamic variable
+delete[] pointerVar; //To deallocate a dynamically created array
+
+- A shallow copy of pointers results in memory deallocation and dangling pointers.
+  Shallow copy: int *first;
+		int *second;
+		second = first;
+  Deep copy:
+		for(int j = 0; j < 10; j++)
+		second[j] = first[j];
+
+How to dynamically allocate:
+ new int;        // dynamically allocates an int
+ new double;     // dynamically allocates a double
+
+ new int[40];      // dynamically allocates an array of 40 ints
+ new double[size]; // dynamically allocates an array of size doubles
+                   //  note that the size can be a variable
+ int * p;        // declare a pointer p
+ p = new int;    // dynamically allocate an int and load address into p
+ myStack = new stack<int>[STACK_NUM]; // dynamically allocates a stack
+
+  // we can also do these in single line statements
+ int x = 40;
+ int * list = new int[x];
+ float * numbers = new float[x+10];
+
+ double * numList = new double[size];	// dynamic array
+
+  list<int> *adj = new list<int>[V]; //A new array of lists
+
+————————
+
+I/O
+
+ifstream infield;
+ofstream outfile;
+
+char filename[51];
+cout << “Enter the input filename”;
+cin >> filename;
+infile.open(filename); //opens the input file
+
+cout << “Enter the output file name:”;
+cin >> fileName;
+outfile.open(filename); //opens the output file
+
+—————————————————
+
+Bitwise OperatorsC provides six operators for bit manipulation;
+these may only be applied to integral operands, that is, char, short, int, and long, whether signed or unsigned.
+&  bitwise AND
+|  bitwise OR
+^  bitwise exclusive OR
+<< left shift
+>> right shift
+~  one's complement (unary)One must distinguish the bitwise operators & and | from the logical operators && and ||,
+which imply left-to-right evaluation of a truth value.
+For example, if x is 1 and y is 2, then x & y is zero while x && y is one.
+—————————————————
+Pointers
+
+p = &c; //assigns the address of c to the variable p, and p is said to ``point to'' c.
+ *  = is the indirection or dereferencing operator; when applied to a pointer, it accesses the object the pointer points to.
+
+int *pa;
+pa = &a[0]; //sets pa to point to element zero of a; that is, pa contains the address of a[0].
+x = *pa; //will copy the contents of a[0] into x.
+pa = &a[0]; //pa and a have identical values. Since the name of an array is a synonym for the location of the initial element,pa = a; //the assignment pa=&a[0] can also be written as
+
+In simple words, Use ** when you want to preserve (OR retain change in) the Memory-Allocation or Assignment even outside of a function call. (So, Pass such function with double pointer arg.)
+—————————————————
+
+OOD
+
+4 main principals of OOD -
+
+1. Encapsulation
+
+Encapsulation means that the internal representation of an object is generally hidden from view outside of the object’s definition. Typically, only the object’s own methods can directly inspect or manipulate its fields.
+
+Encapsulation is the hiding of data implementation by restricting access to accessors and mutators.
+
+2. Abstraction
+
+Data abstraction and encapsulation are closely tied together, because a simple definition of data abstraction is the development of classes, objects, types in terms of their interfaces and functionality, instead of their implementation details. Abstraction denotes a model, a view, or some other focused representation for an actual item.
+
+3. Inheritance
+
+Inheritance is a way to reuse code of existing objects, or to establish a subtype from an existing object, or both, depending upon programming language support. In classical inheritance where objects are defined by classes, classes can inherit attributes and behavior from pre-existing classes called base classes, superclasses, parent classes or ancestor classes. The resulting classes are known as derived classes, subclasses or child classes. The relationships of classes through inheritance gives rise to a hierarchy.
+
+4. Polymorphism
+
+Polymorphism means one name, many forms. Polymorphism manifests itself by having multiple methods all with the same name, but slightly different functionality.
+
+There are 2 basic types of polymorphism. Overridding, also called run-time polymorphism. For method overloading, the compiler determines which method will be executed, and this decision is made when the code gets compiled. Overloading, which is referred to as compile-time polymorphism. Method will be used for method overriding is determined at runtime based on the dynamic type of an object.
+
+
+- If the object is declared in the definition of a member function of a class then the 	object can access both the public and private members.
+- If the object is declared elsewhere then the object can access only the public members of the class.
+- Classes can be copied from one class to another through a member wise copy of all the datatype.
+- Classes and functions -
+  1) Class objects can be passed as parameters to functions and returned as function values.
+  2) Classes can be passed either by value or by reference.
+  3) If a class object is passed by value, the contents of the data members of the actual parameter are copied into the corresponding data members of the formal parameters.
+Inheritance -
+- The public members of a base class can be inherited as either public members or as public members by the derived class.
+- The derived class can redefine the public member functions of the base class.
+
+———————————————————————
+
+BIG 0
+
+- Usually, worst case, average case.
+- Order - O(log x), O(1) > O(x) > O(xlog x) > O(x^2) > O(2^x) > O(x!)
+- When the number of elements gets halved each time we can look at it from the backside where the number of elements is getting multiplied each time.
+	2^k = 16 -> log2(16) = 4 -> log2(N) = k -> 2^k = N.
+	Therefore, this kind of recursion where for example subarrays get halved would be O(logN).
+
+- O(A + B) - When for loops are separated or when we do A chunks of work and then B chunks of work. A and B are added only when A and B are separate arrays or different data 		structures. If they are the same then it just becomes O(2A) and the 2 is ignored so only O(A).
+
+- O(A * B) - Double for loop, one inside another, B chunks of work for each element in A.
+
+O(1) - Determining if a number is even or odd; using a constant-size lookup table or hash table
+O(logn) - Finding an item in a sorted array with a binary search. A problem where the number of elements in the space gets halved each time. O(branches^depth)
+O(n) - Finding an item in an unsorted list; adding two n-digit numbers
+O(n2) - Multiplying two n-digit numbers by a simple algorithm; adding two n×n matrices; bubble sort or insertion sort
+O(n3) - Multiplying two n×n matrices by simple algorithm
+O(cn) - Finding the (exact) solution to the traveling salesman problem using dynamic programming; determining if two logical statements are equivalent using brute force
+O(n!) - Solving the traveling salesman problem via brute-force search
+O(nn) - Often used instead of O(n!) to derive simpler formulas for asymptotic complexity
+
+———————————————————
+
+STRING
+
+- ASCII defines 128 characters(256 in the extended set), as Unicode contains a repertoire of more than 120,000 characters. In an ASCII file, each alphabetic, numeric, or special character is represented with a 7-bit binary number (a string of seven 0s or 1s). 128 possible characters are defined (256 in the extended set).
+- Unicode is a superset of ASCII, and the numbers 0–128 have the same meaning in ASCII as they have in Unicode. For example, the number 65 means "Latin capital 'A'".
+- Because Unicode characters don't generally fit into one 8-bit byte, there are numerous ways of storing Unicode characters in byte sequences, such as UTF-32 and UTF-8.
+
+- As stated in the other answers, ASCII uses 7 bits to represent a character. By using 7 bits, we can have a maximum of 2^7 (= 128) distinct combinations*. Which means that we can represent 128 characters maximum.
+
+Wait, 7 bits? But why not 1 byte (8 bits)?
+
+The last bit (8th) is used for avoiding errors as parity bit. This was relevant years ago.
+
+- Notice that the character 'A' has the code value of 65, 'B' has the value 66, and so on. The important feature is the fact that the ASCII values of letters 'A' through 'Z' are in a contiguous increasing numeric sequence.
+- The values of the lower case letters 'a' through 'z' are also in a contiguous increasing sequence starting at the code value 97. Similarly, the digit symbol characters '0' through '9' are also in an increasing contiguous sequence starting at the code value 48.
+
+——————————————————
+
+ARRAYS
+
+double num[10];
+double num[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}; //array initialization
+double num[10] = {0, 1, 2, 3, 4}; //partial initialization, all other values are set to 0
+double num[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}; //It is not necessary to specify the size of the array
+int i;
+
+- Index Out Of Bounds - Index of an array is in bounds if index >= 0 and index <= arraysize - 1. If index < 0 or index > arraySize - 1, then index is out of bounds.
+Since there is no check in C++, to prevent index out of bounds -
+for(i = 0; i <= 10; i++)
+	list[i] = 0; //logically list[10] doesn’t exist, because 0 - 9.
+- To copy one array into another, that are of same type and size
+  x = y // ILLEGAL
+
+- Copying, comparing, reading data into and from should be done component wise
+  for(int i = 0; i < 25; i++){
+  	y[j] = x[j];
+  }
+
+- Arrays are passed as reference only to functions. Because arrays are passed by ref only, you do not need to use the symbol & when declaring an array as formal parameter. The size of the array is omitted when the array is passed as an arg to a function.
+- If the number of elements of an array is subject to change, declare another var called arraySize and pass it as an argument to the function.
+- When the formal parameter is a reference parameter, then whenever the formal parameter changes, the actual parameter changes as well. But if const is used in the arg of the function when the formal parameter is declared then the actual parameter doesn’t change.
+- When you pass array as a parameter, the base address or the memory location of the first array component is passed to the formal parameter.
+
+C-string ARRAYS
+
+- The last character in the ASCII character set is the null character - ‘\0’.
+char name[16] = {‘J’, ‘O’, ‘H’, ’N’, ‘\0’}; //can store 16 chars, the last one being null terminator
+char name[] = {‘J’, ‘O’, ‘H’, ’N’, ‘\0’};
+
+There are two ways to initialize c-strings -
+  1) char my_string[] = { 'H', 'E', 'L', 'L', 'O', '\0'};
+  2) char my_string[] = "HELLO"; //null terminator is automatically appended at end
+
+- Reading a string without white spaces
+	char str[31];
+	cin.get(str, 31);
+
+——————
+
+Vector
+
+Vectors are same as dynamic arrays with the ability to resize itself automatically when an element is inserted or deleted, with their storage being handled automatically by the container. Vector elements are placed in contiguous storage so that they can be accessed and traversed using iterators. In vectors, data is inserted at the end. Inserting at the end takes differential time, as sometimes there may be a need of extending the array. Removing the last element takes only constant time, because no resizing happens. Inserting and erasing at the beginning or in the middle is linear in time.
+
+Certain functions are associated with vector :
+Iterators
+1. begin() – Returns an iterator pointing to the first element in the vector
+2. end() – Returns an iterator pointing to the theoretical element that follows last element in the vector
+3. rbegin() – Returns a reverse iterator pointing to the last element in the vector (reverse beginning). It moves from last to first element
+4. rend() – Returns a reverse iterator pointing to the theoretical element preceding the first element in the vector (considered as reverse end)
+
+  vector<int> myvector;
+  for (int i = 1; i <= 5; i++)
+	myvector.push_back(i);
+  cout << "myvector contains:";
+
+  for (vector<int>::iterator it = myvector.begin() ; it != myvector.end(); ++it)
+    std::cout << ' ' << *it;
+    myvector.push_back (myint); // THERE IS NO PUSH
+
+————
+Linked List - http://www.geeksforgeeks.org/data-structures/linked-list/
+
+A linked list is represented by a pointer to the first node of the linked list. The first node is called head. If the linked list is empty, then value of head is NULL.
+Each node in a list consists of at least two parts:
+1) data
+2) pointer to the next node
+
+
+3) Array vs Linked List
+main: arrays suck at insertion and deletion,
+LL suck at access since not indexed so we have to traverse whole list. LL is more size dynamic.
+
+- It's easier to store data of different sizes in a linked list.
+  An array assumes every element is exactly the same size.
+- As you mentioned, it's easier for a linked list to grow organically.
+  An array's size needs to be known ahead of time, or re-created when it needs to grow.
+- Shuffling a linked list is just a matter of changing what points to what.
+  Shuffling an array is more complicated and/or takes more memory.
+
+Following are the points in favor of Linked Lists.
+
+(1) The size of the arrays is fixed: So we must know the upper limit on the number of elements in advance.
+    Also, generally, the allocated memory is equal to the upper limit irrespective of the usage, and in practical uses, upper limit is rarely reached.
+
+(2)	Inserting a new element in an array of elements is expensive, because room has to be created for the new elements and to create room existing elements have to shifted.
+
+Deletion is also expensive with arrays until unless some special techniques are used. For example, to delete 1010 in id[], everything after 1010 has to be moved.
+
+So Linked list provides following advantages over arrays
+1)	Dynamic size
+2)	Ease of insertion/deletion
+   		- Insertion and deletion at beginning - constant time
+   		- insertion & deletion at end - linear time
+
+Linked lists have following drawbacks:
+1) Random access is not allowed. We have to access elements sequentially starting from the first node.
+   So we cannot do binary search with linked lists.
+2) Extra memory space for a pointer is required with each element of the list.
+3) Arrays have better cache locality that can make a pretty big difference in performance.
+
+—————
+
+Stack
+
+Stack is a linear data structure which follows a particular order in which the operations are performed.
+The order may be LIFO(Last In First Out) or FILO(First In Last Out).
+
+Mainly the following three basic operations are performed in the stack:
+
+Push: Adds an item in the stack. If the stack is full, then it is said to be an Overflow condition.
+Pop: Removes an item from the stack. The items are popped in the reversed order in which they are pushed. If the stack is empty, then it is said to be an Underflow condition.
+Peek or Top: Returns top element of stack.
+isEmpty: Returns true if stack is empty, else false.
+
+
+empty() – Returns whether the stack is empty
+size() – Returns the size of the stack
+top() – Returns a reference to the top most element of the stack
+push(g) – Adds the element ‘g’ at the top of the stack
+pop() – Deletes the top most element of the stack
+
+—————
+
+Queue
+
+Queues are a type of container adaptors which operate in a first in first out (FIFO) type of arrangement.
+Elements are inserted at the back (end) and are deleted from the front.
+
+The functions supported by queue are :
+empty() – Returns whether the queue is empty
+size() – Returns the size of the queue
+front() – Returns a reference to the first element of the queue
+back() – Returns a reference to the last element of the queue
+push(g) – Adds the element ‘g’ at the end of the queue
+pop() – Deletes the first element of the queue
+
+Priority Queue
+Priority Queue is an extension of queue with following properties.
+1) Every item has a priority associated with it.
+2) An element with high priority is dequeued before an element with low priority.
+3) If two elements have the same priority, they are served according to their order in the queue.
+
+A typical priority queue supports following operations.
+- insert(item, priority): Inserts an item with given priority.
+- getHighestPriority(): Returns the highest priority item.
+- deleteHighestPriority(): Removes the highest priority item.
+
+Heap is generally preferred for priority queue implementation because heaps provide better performance
+compared to arrays or linked list. In a Binary Heap, getHighestPriority() can be implemented in O(1) time,
+insert() can be implemented in O(Logn) time and deleteHighestPriority() can also be implemented in O(Logn) time.
+
+————
+
+Trees
+
+Basic Necessities for code:
+//Struct
+struct node{
+    int data;
+    node *right, *left;
+};
+
+//Insertion into tree function
+void insertNode(int data, node* &root){
+  //ROOT
+  if(root == NULL){
+    node *newRoot = new node;
+    newRoot->data = data;
+    newRoot->left = NULL;
+    newRoot->right = NULL;
+    root = newRoot;
+    return;
+  }
+  //LEFT
+  if( root->data >= data){ //If data is lesser than root then go left
+    if(root->left == NULL){ // But if left is NULL then create left node
+      node *p = new node;
+      p->data = data;
+      p->left = NULL;
+      p->right = NULL;
+      root->left = p;
+      return;
+    }
+    insertNode(data, root->left); //if root->left is not NULL
+  }
+  //RIGHT
+  if(root->data <= data){
+    if(root->right == NULL){
+      node *p = new node;
+      p->left = NULL;
+      p->right = NULL;
+      p->data = data;
+      root->right = p;
+      return;
+    }
+    insertNode(data, root->right);
+  }
+}
+
+Reason to use trees -
+- hierarchy
+- Trees (with some ordering e.g., BST) provide moderate access/search (quicker than Linked List and slower than arrays).
+- Trees provide moderate insertion/deletion (quicker than Arrays and slower than Unordered Linked Lists).
+- Like Linked Lists and unlike Arrays, Trees don’t have an upper limit on number of nodes as nodes are linked using pointers.
+- Manipulate sorted lists of data.
+- Router algorithms
+
+Properties -
+- 1) The maximum number of nodes at level ‘l’ of a binary tree is 2l-1.
+- 2) Maximum number of nodes in a binary tree of height ‘h’ is 2h – 1.
+- 3) In a Binary Tree with N nodes, minimum possible height or minimum number of levels is  ⌈ Log2(N+1) ⌉
+- 4) A Binary Tree with L leaves has at least   ⌈ Log2L ⌉ + 1   levels
+- 5) In Binary tree, number of leaf nodes is always one more than nodes with two children.
+
+TREES
+http://www.geeksforgeeks.org/binary-tree-data-structure/#Introduction
+
+DFS Traversal:
+
+1) Preorder:  N L R
+
+	Uses of Preorder -
+	Preorder traversal is used to create a copy of the tree. Preorder traversal is also used to get prefix expression on of an expression tree. Please see http://en.wikipedia.org/wiki/Polish_notation to know why prefix expressions are useful.
+
+2) Postorder: L R N
+
+	Uses of Postorder -
+	Postorder traversal is used to delete the tree. Please see the question for deletion of tree for details. Postorder traversal is also useful to get the postfix expression of an expression tree. Please see http://en.wikipedia.org/wiki/Reverse_Polish_notation to for the usage of postfix expression.
+
+3) Inorder: L N R
+
+	Uses of Inorder -
+	In case of binary search trees (BST), Inorder traversal gives nodes in non-decreasing order. To get nodes of BST in non-increasing order, a variation of Inorder traversal 	where Inorder traversal is reversed, can be used.
+
+BFS or Level Order Traversal:
+
+printLevelorder(tree)
+Algorithm: https://www.youtube.com/watch?v=kQ-aoKbGKSo
+- Start at root. Set temp = root.
+- Add its children into the queue.
+- Then dequeue a node and assign it to temp.
+- Then add its children to the queue.
+- Then again dequeue and set to temp and look for its children.
+- If a node has no children then push nothing onto the queue instead dequeue again and set as temp.
+
+——————————————
+
+GRAPH
+
+- A graph G is G = (V, E), where V is vertices, E is edges.
+- A graph can be represented in -
+1) Adjacency matrix - Entry is 1 if there is an edge, 0 otherwise
+
+	Pros: Representation is easier to implement and follow. Removing an edge takes O(1) time. Queries like whether there is an edge from vertex ‘u’ to vertex ‘v’ are efficient and can be done O(1).
+	Cons: Consumes more space O(V^2). Even if the graph is sparse(contains less number of edges), it consumes the same space. Adding a vertex is O(V^2) time.
+
+2) Adjacency list - corresponding to each vertex, v, there is a linked list such that each node of the linked list contains a vertex, u.
+
+   Pros: Saves space O(|V|+|E|). In the worst case, there can be C(V, 2) number of edges in a graph thus consuming O(V^2) space. Adding a vertex is easier.
+	 Cons: Queries like whether there is an edge from vertex u to vertex v are not efficient and can be done O(V).
+
+Types of Graphs -
+- Directed graphs (Digraphs) e.g. People on social media like Facebook, connection between people
+- Undirected graphs e.g. pages on web pages
+- Weighted
+- unweighted
+- Dense
+- Sparse
+- Acyclic - tree is an undirected acyclic graph
+- Cyclic
+
+Properties of graphs -
+- Number of edges
+  |v| vertices = n
+  maximum number of edges - 0 <= |E| <= n(n-1), if directed
+         		    0 <= |E| <= n(n-1)/2, in undirected
+
+Graph Algorithms:
+
+BFS: Queue
+
+ - Uses the idea of exhausting all the adjacent of a particular vertex before moving on to another vertex.
+ - Runtime for BFS on GRAPHS - Since the sum of the lengths of all the adjacency lists is Θ(E), the total time spent in scanning adjacency lists is O(E).
+   The overhead for initialization is O(V), and thus the total running time of BFS is O(V + E)."
+
+ ALGORITHM:
+ - Start at a vertex add it to queue, mark it as visited, go to an adj vertex, add it onto queue and mark as visited
+ - Go to all adj vertices of cur, mark as visited and add to queue.
+ - After all adj vertices are exhausted, pop off queue and mark that as curr.
+ - Since queue is FIFO, the one that was inserted first will be popped out each time and its adj vertices will be added to the end.
+ - In the end dequeue
+
+ Simplified algo:
+ - go to vertex, add to queue, mark as visited.
+ - Go to all adj vertex mark as visited and add to queue, when done pop from queue.
+ - If queue is empty, BFS done.
+
+DFS: Stack
+	- Go to a vertex, mark it as visited and push on to stack
+	- Choose an adjacent vertex to visit, mark it as visited and push onto stack
+	- Look at vertex on top of stack, see if it has any unvisited adj vertices, if yes push it onto stack and mark as visited
+	- then look at top of stack and if the number has unvisited adj vertex do the same as above.
+	- If you get to a vertex that has no more unvisited vertices, pop off stack then see if number on top of stack has unvisited adj vertices.
+	- Keep popping till you get to a vertex that has a unvisited adj vertex
+ 	- If stack is empty, traversal is complete.
+Simple also - Go to vertex, put on stack and mark as visited. Look at vertex on top of stack and go to its adj vertex and mark visited. Keep doing till a vertex has no more adj unvisited vertexes. In this case, pop() off stack till you find vertex with unvisited adj vertices. Then when found, do the same again.
+——————————————————————
+SETS
+
+set <int, greater <int> > gquiz1;
+index and value is the same in sets.
+
+Sets are containers that store unique elements following a specific order.
+
+In a set, the value of an element also identifies it (the value is itself the key, of type T), and each value must be unique.
+The value of the elements in a set cannot be modified once in the container (the elements are always const), but they can be inserted or removed from the container.
+
+Internally, the elements in a set are always sorted following a specific strict weak ordering criterion indicated by its internal comparison object (of type Compare).
+
+set containers are generally slower than unordered_set containers to access individual elements by their key, but they allow the direct iteration on subsets based on their order.
+
+Sets are typically implemented as binary search trees.
+——————————————————————
+MAPS
+
+map< int, string> maps;
+
+Each element has a key value and a mapped value. No two mapped values can have same key values.
+
+——————————————————————
+
+HASH -
+
+For arrays and linked lists, we need to search in a linear fashion, which can be costly in practice.
+If we use arrays and keep the data sorted, then a phone number can be searched in O(Logn) time using Binary Search,
+but insert and delete operations become costly as we have to maintain sorted order.
+
+With balanced binary search tree, we get moderate search, insert and delete times. All of these operations can be guaranteed to be in O(Logn) time.
+
+Hashing is the solution that can be used in almost all such situations and performs extremely well compared to above data structures like Array, Linked List, Balanced BST in practice.
+With hashing we get O(1) search time on average (under reasonable assumptions) and O(n) in worst case.
+
+In simple terms, a hash function maps a big number or string to a small integer that can be used as index in hash table.
+
+A good hash function should have following properties
+1) Efficiently computable.
+2) Should uniformly distribute the keys (Each table position equally likely for each key)
+
+Collision Handling: Since a hash function gets us a small number for a big key,
+there is possibility that two keys result in same value.
+The situation where a newly inserted key maps to an already occupied slot in hash table is called collision
+and must be handled using some collision handling technique. Following are the ways to handle collisions:
+
+How to handle Collisions?
+There are mainly two methods to handle collision:
+1) Separate Chaining
+2) Open Addressing
+
+Separate Chaining: The idea is to make each cell of hash table point to a linked list of records that have
+same hash function value. Chaining is simple, but requires additional memory outside the table.
+
+Advantages:
+1) Simple to implement.
+2) Hash table never fills up, we can always add more elements to chain.
+3) Less sensitive to the hash function or load factors.
+4) It is mostly used when it is unknown how many and how frequently keys may be inserted or deleted.
+
+Disadvantages:
+1) Cache performance of chaining is not good as keys are stored using linked list. Open addressing provides better cache performance as everything is stored in same table.
+2) Wastage of Space (Some Parts of hash table are never used)
+3) If the chain becomes long, then search time can become O(n) in worst case.
+4) Uses extra space for links.
+
+m = Number of slots in hash table
+n = Number of keys to be inserted in hash table
+
+ Load factor α = n/m
+
+ Expected time to search = O(1 + α)
+
+ Expected time to insert/delete = O(1 + α)
+
+ Time complexity of search insert and delete is O(1) if  α is O(1)
+
+Open Addressing: In open addressing, all elements are stored in the hash table itself.
+Each table entry contains either a record or NIL. When searching for an element, we one by one examine
+table slots until the desired element is found or it is clear that the element is not in the table.
+Like separate chaining, open addressing is a method for handling collisions.
+In Open Addressing, all elements are stored in the hash table itself.
+So at any point, size of table must be greater than or equal to total number of keys
+(Note that we can increase table size by copying old data if needed).
+
+Insert(k): Keep probing until an empty slot is found. Once an empty slot is found, insert k.
+
+Search(k): Keep probing until slot’s key doesn’t become equal to k or an empty slot is reached.
+
+Delete(k): Delete operation is interesting. If we simply delete a key, then search may fail. So slots of deleted keys are marked specially as “deleted”.
+Insert can insert an item in a deleted slot, but search doesn’t stop at a deleted slot.
+
+Types of open addressing -
+a) Linear Probing: In linear probing, we linearly probe for next slot. For example, typical gap between two probes is 1 as taken in below example also.
+let hash(x) be the slot index computed using hash function and S be the table size
+
+Clustering: The main problem with linear probing is clustering, many consecutive elements form groups and it starts taking time to find a free slot or to search an element.
+
+b) Quadratic Probing We look for i2‘th slot in i’th iteration.
+
+c) Double Hashing We use another hash function hash2(x) and look for i*hash2(x) slot in i’th rotation
+
+Comparison of above three:
+Linear probing has the best cache performance, but suffers from clustering. One more advantage of Linear probing is easy to compute.
+
+Quadratic probing lies between the two in terms of cache performance and clustering.
+
+Double hashing has poor cache performance but no clustering. Double hashing requires more computation time as two hash functions need to be computed.
+
+———————————————————————
+
+Sorting Algorithms -
+
+1) Bubble -
+
+Worst and Average Case Time Complexity: O(n*n). Worst case occurs when array is reverse sorted.
+
+Best Case Time Complexity: O(n). Best case occurs when array is already sorted.
+
+Auxiliary Space: O(1)
+
+2) Insertion -
+
+	Algorithm
+	// Sort an arr[] of size n
+	insertionSort(arr, n)
+	Loop from i = 1 to n-1.
+	……a) Pick element arr[i] and insert it into sorted sequence arr[0…i-1]
+
+	Time Complexity: O(n*n)
+
+	Auxiliary Space: O(1)
+
+What is Binary Insertion Sort?
+We can use binary search to reduce the number of comparisons in normal insertion sort.
+Binary Insertion Sort find use binary search to find the proper location to insert the selected item at each
+iteration. In normal insertion, sort it takes O(i) (at ith iteration) in worst case.
+We can reduce it to O(logi) by using binary search.
+The algorithm as a whole still has a running worst case running time of O(n2) because of the series of swaps required for each insertion.
+Refer this for 	implementation.
+
+How to implement Insertion Sort for Linked List?
+
+	1) Create an empty sorted (or result) list
+	2) Traverse the given list, do following for every node.
+	......a) Insert current node in sorted way in sorted or result list.
+	3) Change head of given linked list to head of sorted (or result) list.
+
+3) Selection -
+
+	The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order)
+  from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array.
+
+	1) The subarray which is already sorted.
+	2) Remaining subarray which is unsorted.
+
+	In every iteration of selection sort, the minimum element (considering ascending 	order) from the unsorted subarray is picked and moved to the sorted subarray.
+
+4) Merge - http://www.geeksforgeeks.org/merge-sort/
+
+	Like QuickSort, Merge Sort is a Divide and Conquer algorithm. It divides input array in two halves, calls itself for the two halves and then merges the two
+  sorted halves. The merge() function is used for merging two halves.
+  The merge(arr, l, m, r) is key process that assumes that arr[l..m] and arr[m+1..r] are sorted and merges the two sorted sub-arrays into one. See following C implementation for details.
+
+Why MergeSort is preferred over QuickSort for Linked Lists?
+	In case of linked lists the case is different mainly due to difference in memory allocation of arrays and linked lists.
+  Unlike arrays, linked list nodes may not be adjacent in memory. Unlike array, in linked list, we can insert items in the
+  middle in O(1) extra space and O(1) time. Therefore merge operation of merge sort can be implemented without extra space for linked lists.
+
+	In arrays, we can do random access as elements are continuous in memory. Let us say we have an integer (4-byte) array A and
+  let the address of A[0] be x then to 	access A[i], we can directly access the memory at (x + i*4).
+  Unlike arrays, we can not do random access in linked list. Quick Sort requires a lot of this kind of access.
+  In linked list to access i’th index, we have to travel each and every node from the head to i’th node as we don’t have continuous
+  block of memory. Therefore, the overhead increases for quick sort. Merge sort accesses data sequentially and
+  the need of random access is low.
+
+Applications of Merge Sort
+
+- Merge Sort is useful for sorting linked lists in O(nLogn) time. In case of linked lists the case is different mainly due to difference in memory allocation of arrays and linked lists.
+  Unlike arrays, linked list nodes may not be adjacent in memory. Unlike array, in linked list, we can insert items in the middle in O(1) extra
+  space and O(1) time. Therefore merge operation of merge sort can be implemented without extra space for linked lists.
+	In arrays, we can do random access as elements are continuous in memory. Let us say we have an integer (4-byte) array A and let the address of A[0] be x then to 	access A[i],
+  we can directly access the memory at (x + i*4). Unlike arrays, we can not do random access in linked list. Quick Sort requires a lot of this kind of access.
+  In linked list to access i’th index, we have to travel each and every node from the head to i’th node as we don’t have continuous block of memory. Therefore, the overhead increases for quick sort.
+  Merge sort accesses data sequentially and the need of random access is low.
+
+- Inversion Count Problem
+- Used in External Sorting
+
+	Time complexity of Merge Sort is \Theta(nLogn) in all 3 cases (worst, average and best) as merge sort always divides the array in two halves and take linear time to 	merge two halves.
+
+	Auxiliary Space: O(n)
+
+5) Quick - http://www.geeksforgeeks.org/quick-sort/
+	optimized http://www.geeksforgeeks.org/quicksort-tail-call-optimization-reducing-	worst-case-space-log-n/
+
+	The key process in quickSort is partition(). Target of partitions is, given an array and an element x of array as pivot,
+  put x at its correct position in sorted array and put all smaller elements (smaller than x) before x, and put all greater
+  elements (greater than x) after x. All this should be done in linear time.
+
+	The logic is simple, we start from the leftmost element and keep track of index of smaller (or equal to) elements as i.
+  While traversing, if we find a smaller element, we swap current element with arr[i]. Otherwise we ignore current element.
+
+	/* low  --> Starting index,  high  --> Ending index */
+	quickSort(arr[], low, high)
+	{
+    	if (low < high)
+    	{
+       	 /* pi is partitioning index, arr[p] is now
+       	    at right place */
+       	 pi = partition(arr, low, high);
+
+         quickSort(arr, low, pi - 1);  // Before pi
+         quickSort(arr, pi + 1, high); // After pi
+    	}
+	}
+
+	Pseudo code for partition()
+	/* This function takes last element as pivot, places
+   	the pivot element at its correct position in sorted
+   	 array, and places all smaller (smaller than pivot)
+   	to left of pivot and all greater elements to right
+   	of pivot */
+	partition (arr[], low, high)
+	{
+    	// pivot (Element to be placed at right position)
+    	pivot = arr[high];
+
+    	i = (low - 1)  // Index of smaller element
+
+    	for (j = low; j <= high - 1; j++)
+    	{
+        // If current element is smaller than or
+        // equal to pivot
+          if (arr[j] <= pivot)
+          {
+            i++;    // increment index of smaller element
+            swap arr[i] and arr[j]
+          }
+       }
+
+        swap arr[i + 1] and arr[high])
+        return (i + 1)
+   }
+
+	Although the worst case time complexity of QuickSort is O(n2) which is more than 	many other sorting algorithms like Merge Sort and Heap Sort, QuickSort is faster 	in practice, because its inner loop can be efficiently implemented on most 		architectures, and in most real-world data. QuickSort can be implemented in 		different ways by changing the choice of pivot, so that the worst case rarely 		occurs for a given type of data. However, merge sort is generally considered 		better when data is huge and stored in external storage.
+
+Why MergeSort is preferred over QuickSort for Linked Lists?
+	In case of linked lists the case is different mainly due to difference in memory 	allocation of arrays and linked lists. Unlike arrays, linked list nodes may not be 	adjacent in memory. Unlike array, in linked list, we can insert items in the 		middle in O(1) extra space and O(1) time. Therefore merge operation of merge sort 	can be implemented without extra space for linked lists.
+
+	In arrays, we can do random access as elements are continuous in memory. Let us 	say we have an integer (4-byte) array A and let the address of A[0] be x then to 	access A[i], we can directly access the memory at (x + i*4). Unlike arrays, we can 	not do random access in linked list. Quick Sort requires a lot of this kind of 		access. In linked list to access i’th index, we have to travel each and every node 	from the head to i’th node as we don’t have continuous block of memory. Therefore, 	the overhead increases for quick sort. Merge sort accesses data sequentially and 	the need of random access is low.
+
+
+
+—————————————————————————
+
+CHECKS -
+NULL Checks
+- Char array pointers
+
+EXTRA
+
+- String: Anagram vs Permutation
+Anagram is "a word or phrase spelled by rearranging the letters of another word or phrase". So to be an anagram the arrangement of letters must make a word - that is, an anagram of a word must have a meaning, such as cinema, formed from iceman.
+
+ On the other hand, permutation is defined as "the act of changing the arrangement of a given number of elements". So a permutation of a word can be any random assortment of characters, not necessarily having a meaning in the original language.
+
+ So every anagram is a permutation of the word, but every permutation is not an anagram. To make it clearer 'cheaters' is an anagram of 'teachers' because both have the same letters, albeit in different positions, and both have some meaning in the English language. But 'eeahcrst' is merely a permutation of 'teachers' because 'eeahcrst' doesn't have any meaning associated with it in the English language.

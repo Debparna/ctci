@@ -1,0 +1,33 @@
+TREES
+
+Traversals:
+Preorder:  N L R
+Postorder: L R N
+Inorder: L N R
+
+BFS: Queue
+   - go to a vertex
+   - Stay on vertex and go to an adjacent vertex p
+   - put that adjacent vertex on queue
+   - Go back to original vertex and go to next adjacent vertex
+   - Put that vertex on queue again
+   - Keep doing that till all there vertices get over
+   - After we are done with the first vertex, go to the next one by popping the first one 	off the queue
+   - That first vertex on queue is the next chosen vertex and do the same thing again, go 
+     its adjacent vertices and keep adding to the queue the vertices that have not already
+     been visited
+
+DFS: Stack
+	- Go to a vertex, mark it as visited and push on to stack
+	- Choose an adjacent vertex to visit, mark it as visited and push onto stack
+	- Go to that adjacent vertex and choose a vertex of the adjacent vertex
+	- Go to that vertex, mark that as visited and push onto stack
+	- then go to the vertex of the adjacent vertex and do the same
+	- Go all the way in the depth and keep doing that till once for a vertex there are 
+	  no more vertices left unvisited
+	- When a vertex has no more unvisited vertices then pop it off the stack
+	- keep popping till you find a vertex with a adjacent vertex, then mark that one 	  as visited and put that into stack.
+
+Level Order:
+
+

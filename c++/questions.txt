@@ -1,0 +1,14 @@
+ERRORS/CHECKS:
+1) See where the for loop runs till. if it starts from 0, it should run till size-1.
+2) Array NULL characters.
+3) CHECK FOR NULL POINTERS: Arrays, pointers, trees(root and children)
+
+QUESTIONS:
+2) Hash vs map? STL VS ACTUAL DATA STRUCTURE
+7) diff between dynamic programming and recursion?
+8) recursion vs iterative
+
+3) stack<int> *stack?
+5) O(nlogn) 
+6) tail pointer LL
+8) create a LL using new 

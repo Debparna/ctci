@@ -1,0 +1,155 @@
+CHECKS -
+- when you want to change the value of an arg in a function pass it as an address(&).
+- if int *pa is a pointer, and if pa is assigned to the address of &a[0], sets pa to point
+  to element 0 of a or pa = a. That is pa contains the address of a[0]. Then x = *pa will copy contents of a[0] into x. (pa + 1) will point to the next element.
+- when passed as an arg to a fn, char *s and char s[] are the same.
+
+Pass By Value
+The local parameters are copies of the original arguments passed in
+Changes made in the function to these variables do not affect originals
+
+Pass By Reference
+The local parameters are references to the storage locations of the original arguments passed in.
+Changes to these variables in the function will affect the originals
+No copy is made, so overhead of copying (time, storage) is saved
+
+NULL Checks
+- Char array pointers
+- Check if ALWAYS ==
+- Stacks - you can’t do pop() directly, you have to do top() store in a var then do pop()
+    while(!s1.empty()){
+      int n = s1.top();
+      s1.pop();
+      s2.push(n);
+    }
+- Check if stacks are empty or not
+- Set of stacks - stack<int> *myStack = new stack<int>[STACK_NUM];
+- size(), pop(), top(), empty() are in built functions
+-
+
+- Linked list -
+	- When creating a new node while inserting, remember to assign curr data and cur pointer to next and next dat
+	- Always check if head == NULL, if it doesnt return; or return false;
+	- if head->next is used or head->next->next is used check that for NULL too.
+	- Parameter of linked list functions are usually just node* head.
+	- if any new node, either parameter or created, check for NULL
+
+
+	struct Node
+	{
+	  int data;
+	  Node* next;
+	};
+
+	class LinkedList
+	{
+	private:
+	  Node* tail;   // added this so insertion is O(1) time
+
+	public:
+	  Node* head;
+	  LinkedList();
+	  ~LinkedList();
+
+	  void insert(int value);
+	  void Delete(int value);
+	  void find(int value);
+	  void createCycle();
+	  void display();
+	};
+
+	LinkedList::LinkedList()
+	{
+	  this->head = nullptr;
+	}
+
+	LinkedList::~LinkedList()
+	{
+	  Node *temp = nullptr;
+	  while( head != NULL){
+	    head = head->next;
+	    delete temp;
+	  }
+	  tail = NULL;
+	}
+
+	void LinkedList::insert(int value) //insertion in O(1) time with tail pointer
+	{
+	  if (head == NULL)
+	  {
+	    head = new Node();
+	    tail = head;
+	    head->next = nullptr;
+	    head->data = value;
+	  }
+	  else
+	  {
+	    tail->next = new Node();
+	    tail = tail->next;
+	    tail->data = value;
+	    tail->next = nullptr;
+	  }
+	}
+
+	void LinkedList::display()
+	{
+	  Node* temp;
+	  if (head == NULL)
+	  {
+	    return;
+	  }
+
+	  temp = head;
+	  while (temp != NULL)
+	  {
+	    cout << temp->data << ' ';
+	    temp = temp->next;
+	  }
+	  cout << endl;
+	}
+
+Trees
+   - When new root is created, set the data to data, the left and right children to NULL 	and set the new new to the one that was supposed to be assigned to in the tree
+   - Check to see of root or any of of the nodes passed into the function is NULL or not, 	if they are return or return false.
+
+	struct node{
+	  int data;
+	  node *right;
+	  node *left;
+	};
+
+	void insertNode(int data, node* &root){
+	  //ROOT
+	  if(root == NULL){
+	    node *newRoot = new node;
+	    newRoot->data = data;
+	    newRoot->left = NULL;
+	    newRoot->right = NULL;
+	    root = newRoot;
+	    return;
+	  }
+	  //LEFT
+	  if( root->data >= data){ //If data is lesser than root then go left
+	    if(root->left == NULL){ // But if left is NULL then create left node
+	      node *p = new node;
+	      p->data = data;
+	      p->left = NULL;
+	      p->right = NULL;
+	      root->left = p;
+	      return;
+	    }
+	    insertNode(data, root->left); //if root->left is not NULL
+	  }
+	  //RIGHT
+	  if(root->data <= data){
+	    if(root->right == NULL){
+	      node *p = new node;
+	      p->left = NULL;
+	      p->right = NULL;
+	      p->data = data;
+	      root->right = p;
+	      return;
+	    }
+	    insertNode(data, root->right);
+	  }
+	}

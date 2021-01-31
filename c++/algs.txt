@@ -1,0 +1,37 @@
+Shortest Path Problem
+
+Shortest path - one where the sum of the edges is as small as possible
+
+Unweighted graph
+- shortest path is the one with the fewest number of edges
+- can be done by bfs - start at one node and visit the closest nodes first. Slowly moving 	out to more distant nodes until you find the one you are looking for.
+
+Weighted undirected graphs - Dijkstra’s
+- Distance value - Begin by giving all vertices a distance value. Start with infinity. The 	node we are starting with will have a distance of 0.
+- Distance is the sum of edge weights on a path between your starting point and whatever   	vertex you are on.
+- At the end, the distance is the distance of the shortest path.
+- Use min priority queue - the element of the min distance can be removed efficiently
+- Extract min - to take out min element, the only one with distance of 0.
+- From our starting node, follow each edge and update the node on the other side with a distance value which is just the weight of the edge. Now, always pick the node with the smallest distance value which means we run extract min on the queue.
+- Repeat the process by visiting all adjacent nodes that are still in the queue and updating their distance values if you can decrease it at all.
+- We stop when the node we are looking for has been found or all the nodes have a distance 	of infinity.
+
+- Dijkstra is called greedy algorithm because it picks the node with the lowest distance 	or which ever option looks best at the moment.
+
+Knapsack problem -
+
+Dynamic Programming - http://www.geeksforgeeks.org/dynamic-programming-set-1/
+1) Overlapping Subproblems:
+Like Divide and Conquer, Dynamic Programming combines solutions to sub-problems. Dynamic Programming is mainly used when solutions of same subproblems are needed again and again. In dynamic programming, computed solutions to subproblems are stored in a table so that these don’t have to recomputed. So Dynamic Programming is not useful when there are no common (overlapping) subproblems because there is no point storing the solutions if they are not needed again. For example, Binary Search doesn’t have common subproblems. If we take example of following recursive program for Fibonacci Numbers, there are many subproblems which are solved again and again.
+
+a) Memoization (Top Down): The memoized program for a problem is similar to the recursive version with a small modification that it looks into a lookup table before computing solutions. We initialize a lookup array with all initial values as NIL. Whenever we need solution to a subproblem, we first look into the lookup table. If the precomputed value is there then we return that value, otherwise we calculate the value and put the result in lookup table so that it can be reused later.
+
+b) Tabulation (Bottom Up): The tabulated program for a given problem builds a table in bottom up fashion and returns the last entry from table. For example, for the same Fibonacci number, we first calculate fib(0) then fib(1) then fib(2) then fib(3) and so on. So literally, we are building the solutions of subproblems bottom-up.
+
+Benefit of DP over Recursion:
+DP is a technique which uses a table to store the results of sub-problem so that if same sub-problem is encountered again in future, it could directly return the result instead of re-calculating it.
+
+
+TSP -
+Approx algo -
+Christofides algo -
